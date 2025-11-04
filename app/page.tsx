@@ -22,7 +22,6 @@ export default function App() {
     try {
       const res = await axios.post("/api/task", { taskInputName });
       if (res.status == 200) {
-        alert(res.data.message);
         setTaskInputName(""); // Clears the input
       }
     } catch (err: any) {
