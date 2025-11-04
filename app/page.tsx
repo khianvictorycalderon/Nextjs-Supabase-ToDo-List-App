@@ -1,3 +1,5 @@
+import { PendingCard } from "@/lib/components/card";
+
 `use client`;
 
 export default function App() {
@@ -17,12 +19,24 @@ export default function App() {
 
       <div className="flex flex-col lg:flex-row text-white flex-1 h-full">
         <div className="flex-1/2 bg-gray-800 p-4 text-center">
-          <span className="text-lg font-semibold">Pending Tasks</span>
-          <hr className="my-2"/>
+          <p className="text-lg font-semibold mb-4">Pending Tasks</p>
+          <div className="flex flex-col gap-4">
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+            <PendingCard taskName="MyTask" />
+          </div>
         </div>
         <div className="flex-1/2 bg-gray-700 p-4 text-center">
-          <span className="text-lg font-semibold">Finished Tasks</span>
-          <hr className="my-2"/>
+          <p className="text-lg font-semibold mb-4">Finished Tasks</p>
         </div>
       </div>
 
