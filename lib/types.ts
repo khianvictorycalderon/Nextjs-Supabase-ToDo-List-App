@@ -1,4 +1,4 @@
-interface TasksProps extends CardProps {
+interface TasksProps extends Omit<CardProps, "onActionComplete"> {
     status: "pending" | "completed";
 }
 
