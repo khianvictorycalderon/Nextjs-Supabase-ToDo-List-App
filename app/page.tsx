@@ -1,6 +1,6 @@
 'use client';
 
-import { FinishedCard, PendingCard } from "@/lib/components/card";
+import { CompletedCard, PendingCard } from "@/lib/components/card";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -58,7 +58,7 @@ export default function App() {
             {tasks.filter(item => item.status == "pending").length > 0 ? (
               <>
                 {tasks.filter(item => item.status == "done").map((item, index) => (
-                  <FinishedCard
+                  <CompletedCard
                     key={`${item.taskName}-${index}`}
                     taskId={item.taskId} 
                     taskName={item.taskName}

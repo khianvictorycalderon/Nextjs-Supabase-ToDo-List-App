@@ -32,7 +32,7 @@ export const PendingCard = ({taskId, taskName}: CardProps) => {
     );
 }
 
-export const FinishedCard = ({taskId, taskName}: CardProps) => {
+export const CompletedCard = ({taskId, taskName}: CardProps) => {
     return (
         <div className="bg-gray-800 p-4 rounded-md shadow">
             <p className="text-xl font-semibold tracking-wider">{taskName}</p>
