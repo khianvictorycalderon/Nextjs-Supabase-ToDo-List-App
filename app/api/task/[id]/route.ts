@@ -17,6 +17,14 @@ export async function PATCH(
 }
 
 // For deleting a task
-// export async function DELETE(req: NextRequest) {
+export async function DELETE(
+    _req: NextRequest, 
+    {params}: {params: Promise<{id: string}>} 
+) {
+    const { id: taskId } = await params;
+    console.log(`Task with ID ${taskId} successfully deleted!`);
 
-// }
+    return NextResponse.json({
+        message: "Successfully mocked deleted!"
+    }, { status: 200 });
+}
