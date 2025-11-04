@@ -12,7 +12,7 @@ export default function App() {
   
   // Fething from back-end
   useEffect(() => {
-    axios.get("api/task").then(res => setTasks(res.data.tasks));
+    axios.get("/api/task").then(res => setTasks(res.data.tasks));
   },[]);
 
   const handleAddTask = (e: React.FormEvent<HTMLFormElement>, taskName: string) => {
