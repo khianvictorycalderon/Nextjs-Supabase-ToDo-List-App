@@ -5,4 +5,5 @@ interface TasksProps extends CardProps {
 interface CardProps {
     taskId: string;
     taskName: string;
+    onActionComplete: () => void;
 }

@@ -11,14 +11,20 @@ export default function App() {
   const [taskInputName, setTaskInputName] = useState<string>("");
   const [isAddingTask, setIsAddingTask] = useState<boolean>(false);
   
+  const fetchTasks = async () => {
+    const res = await axios.get<{ tasks: TasksProps[] }>("/api/task");
+    setTasks(res.data.tasks);
+  }
+
   // Fething from back-end
   useEffect(() => {
-    axios.get("/api/task").then(res => setTasks(res.data.tasks));
+    fetchTasks();
   },[]);
 
-  const handleAddTask = async (e: React.FormEvent<HTMLFormElement>, taskName: string) => {
+  const handleAddTask = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsAddingTask(true);
+    if (!taskInputName.trim()) return alert("Task name cannot be empty!");
     try {
       const res = await axios.post("/api/task", { taskInputName });
       if (res.status == 200) {
@@ -38,7 +44,7 @@ export default function App() {
       <div className="bg-gray-900 text-white p-4">
         <h1 className="text-4xl font-bold text-center pt-4">ToDo List App</h1>
         <h2 className="text-2xl italic text-center pb-4">(Next.js + Supabase)</h2>
-        <form onSubmit={(e) => handleAddTask(e, taskInputName)} className="my-4 justify-center items-center flex flex-col lg:flex-row gap-2 lg:gap-6">
+        <form onSubmit={(e) => handleAddTask(e)} className="my-4 justify-center items-center flex flex-col lg:flex-row gap-2 lg:gap-6">
           <label htmlFor="task-name-input" className="text-lg font-semibold">Task:</label>
           <input disabled={isAddingTask} value={taskInputName} onChange={(e) => setTaskInputName(e.target.value)} name="task-name-input" className="bg-gray-50 text-black disabled:bg-gray-400 disabled:text-gray-700 text-lg p-1 rounded-md w-full lg:w-[30%] outline-0 focus:ring-blue-600 focus:ring-2 shadow focus:shadow-2xl" type="text" />
           <input disabled={isAddingTask} className="font-bold py-2 px-6 cursor-pointer disabled:cursor-not-allowed bg-green-600 text-white disabled:bg-green-700 disabled:text-gray-300 rounded-md w-full lg:w-auto hover:bg-green-500 transition duration-300" type="submit" value="Add Task"/>
@@ -56,6 +62,7 @@ export default function App() {
                     key={`${item.taskName}-${index}`}
                     taskId={item.taskId} 
                     taskName={item.taskName}
+                    onActionComplete={fetchTasks}
                     />
                 ))}
               </>
@@ -75,6 +82,7 @@ export default function App() {
                     key={`${item.taskName}-${index}`}
                     taskId={item.taskId} 
                     taskName={item.taskName}
+                    onActionComplete={fetchTasks}
                     />
                 ))}
               </>
