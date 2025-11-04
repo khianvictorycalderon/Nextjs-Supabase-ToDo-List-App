@@ -15,12 +15,14 @@ export default function App() {
         </form>
       </div>
 
-      <div className="flex flex-col lg:flex-row text-white h-full">
-        <div className="flex-1/2 bg-gray-800 p-4 text-center lg:h-full">
+      <div className="flex flex-col lg:flex-row text-white flex-1 h-full">
+        <div className="flex-1/2 bg-gray-800 p-4 text-center">
           <span className="text-lg font-semibold">Pending Tasks</span>
+          <hr className="my-2"/>
         </div>
-        <div className="flex-1/2 bg-gray-700 p-4 text-center lg:h-full">
+        <div className="flex-1/2 bg-gray-700 p-4 text-center">
           <span className="text-lg font-semibold">Finished Tasks</span>
+          <hr className="my-2"/>
         </div>
       </div>
 
