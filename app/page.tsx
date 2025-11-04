@@ -52,10 +52,11 @@ export default function App() {
             )}
           </div>
         </div>
+
         <div className="flex-1/2 bg-gray-700 p-4 text-center">
           <p className="text-lg font-semibold mb-4">Completed Tasks</p>
           <div className="flex flex-col gap-4">
-            {tasks.filter(item => item.status == "pending").length > 0 ? (
+            {tasks.filter(item => item.status == "completed").length > 0 ? (
               <>
                 {tasks.filter(item => item.status == "completed").map((item, index) => (
                   <CompletedCard
