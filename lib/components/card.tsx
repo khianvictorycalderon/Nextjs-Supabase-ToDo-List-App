@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-const handleUpdateStatus = async (taskId: string, status: "done" | "pending") => {
+const handleUpdateStatus = async (taskId: string, status: "completed" | "pending") => {
     try {
         await axios.patch(`/api/task/${taskId}`, { status });
         console.log(`Task with ID ${taskId}, successfully marked as ${status}!`);
@@ -25,7 +25,7 @@ export const PendingCard = ({taskId, taskName}: CardProps) => {
         <div className="bg-gray-600 p-4 rounded-md shadow">
             <p className="text-xl font-semibold tracking-wider">{taskName}</p>
             <div className="flex w-full mt-4 gap-4">
-                <button onClick={() => handleUpdateStatus(taskId, "done")} className="flex-1 bg-blue-600 py-2 rounded-lg cursor-pointer transition duration-300 hover:bg-blue-500">Mark as Done</button>
+                <button onClick={() => handleUpdateStatus(taskId, "completed")} className="flex-1 bg-blue-600 py-2 rounded-lg cursor-pointer transition duration-300 hover:bg-blue-500">Mark as Done</button>
                 <button onClick={() => handleDeleteTask(taskId)} className="flex-1 bg-red-600 py-2 rounded-lg cursor-pointer transition duration-300 hover:bg-red-500">Delete</button>
             </div>
         </div>

@@ -1,5 +1,5 @@
 interface TasksProps extends CardProps {
-    status: "pending" | "done";
+    status: "pending" | "completed";
 }
 
 interface CardProps {

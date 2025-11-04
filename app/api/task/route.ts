@@ -18,7 +18,7 @@ export async function GET() {
         {
             taskId: "1003",
             taskName: "Feed the Dog",
-            status: "done"
+            status: "completed"
         },
     ]
 

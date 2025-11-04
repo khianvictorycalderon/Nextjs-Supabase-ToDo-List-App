@@ -57,7 +57,7 @@ export default function App() {
           <div className="flex flex-col gap-4">
             {tasks.filter(item => item.status == "pending").length > 0 ? (
               <>
-                {tasks.filter(item => item.status == "done").map((item, index) => (
+                {tasks.filter(item => item.status == "completed").map((item, index) => (
                   <CompletedCard
                     key={`${item.taskName}-${index}`}
                     taskId={item.taskId} 
