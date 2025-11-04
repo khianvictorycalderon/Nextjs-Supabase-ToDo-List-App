@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 // Getting all the tasks from database
 export async function GET() {
@@ -28,4 +28,17 @@ export async function GET() {
     }, {
         status: 200
     })
+}
+
+export async function POST(req: NextRequest) {
+    const body = await req.json();
+
+    // New task
+    const newTaskName = body.taskInputName;
+    console.log(`Task "${newTaskName}" created successfully!`);
+
+    return NextResponse.json({
+        message: "Successfully created new task!"
+    }, { status: 200 });
+
 }

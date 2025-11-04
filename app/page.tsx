@@ -15,8 +15,17 @@ export default function App() {
     axios.get("/api/task").then(res => setTasks(res.data.tasks));
   },[]);
 
-  const handleAddTask = (e: React.FormEvent<HTMLFormElement>, taskName: string) => {
+  const handleAddTask = async (e: React.FormEvent<HTMLFormElement>, taskName: string) => {
     e.preventDefault();
+    try {
+      const res = await axios.post("/api/task", { taskInputName });
+      if (res.status == 200) {
+        alert(res.data.message);
+        setTaskInputName(""); // Clears the input
+      }
+    } catch (err: any) {
+      alert(`Unable to add task: ${err.message}`);
+    }
   }
 
   return (
@@ -28,7 +37,7 @@ export default function App() {
         <h2 className="text-2xl italic text-center pb-4">(Next.js + Supabase)</h2>
         <form onSubmit={(e) => handleAddTask(e, taskInputName)} className="my-4 justify-center items-center flex flex-col lg:flex-row gap-2 lg:gap-6">
           <label htmlFor="task-name-input" className="text-lg font-semibold">Task:</label>
-          <input onChange={(e) => setTaskInputName(e.target.value)} name="task-name-input" className="bg-gray-50 text-lg p-1 rounded-md w-full lg:w-[30%] outline-0 focus:ring-blue-600 focus:ring-2 shadow focus:shadow-2xl text-black" type="text" />
+          <input value={taskInputName} onChange={(e) => setTaskInputName(e.target.value)} name="task-name-input" className="bg-gray-50 text-lg p-1 rounded-md w-full lg:w-[30%] outline-0 focus:ring-blue-600 focus:ring-2 shadow focus:shadow-2xl text-black" type="text" />
           <input className="font-bold py-2 px-6 cursor-pointer bg-green-600 text-white rounded-md w-full lg:w-auto hover:bg-green-500 transition duration-300" type="submit" value="Add Task"/>
         </form>
       </div>
