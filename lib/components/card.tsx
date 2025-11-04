@@ -1,6 +1,6 @@
 'use client';
 
-export const PendingCard = ({taskName}: CardProps) => (
+export const PendingCard = ({taskId, taskName}: CardProps) => (
     <div className="bg-gray-600 p-4 rounded-md shadow">
         <p className="text-xl font-semibold tracking-wider">{taskName}</p>
         <div className="flex w-full mt-4 gap-4">
@@ -10,7 +10,7 @@ export const PendingCard = ({taskName}: CardProps) => (
     </div>
 );
 
-export const FinishedCard = ({taskName}: CardProps) => (
+export const FinishedCard = ({taskId, taskName}: CardProps) => (
     <div className="bg-gray-800 p-4 rounded-md shadow">
         <p className="text-xl font-semibold tracking-wider">{taskName}</p>
         <div className="flex w-full mt-4 gap-4">
