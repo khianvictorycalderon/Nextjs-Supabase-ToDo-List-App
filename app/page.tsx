@@ -1,4 +1,4 @@
-import { PendingCard } from "@/lib/components/card";
+import { FinishedCard, PendingCard } from "@/lib/components/card";
 
 `use client`;
 
@@ -37,6 +37,43 @@ export default function App() {
         </div>
         <div className="flex-1/2 bg-gray-700 p-4 text-center">
           <p className="text-lg font-semibold mb-4">Finished Tasks</p>
+          <div className="flex flex-col gap-4">
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+            <FinishedCard taskName="Finished Task"/>
+          </div>
         </div>
       </div>
 
