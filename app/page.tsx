@@ -1,8 +1,19 @@
-import { FinishedCard, PendingCard } from "@/lib/components/card";
+'use client';
 
-`use client`;
+import { FinishedCard, PendingCard } from "@/lib/components/card";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function App() {
+
+  // Set empty array first
+  const [tasks, setTasks] = useState<TasksProps[]>([]);
+  
+  // Fething from back-end
+  useEffect(() => {
+    axios.get("api/task").then(res => setTasks(res.data.tasks));
+  },[]);
+
   return (
     <div className="min-h-screen bg-red-900 flex flex-col">
 
@@ -20,11 +31,27 @@ export default function App() {
       <div className="flex flex-col lg:flex-row text-white flex-1 h-full">
         <div className="flex-1/2 bg-gray-800 p-4 text-center">
           <p className="text-lg font-semibold mb-4">Pending Tasks</p>
-          <div className="flex flex-col gap-4"></div>
+          <div className="flex flex-col gap-4">
+            {tasks.filter(item => item.status == "pending").map((item, index) => (
+              <PendingCard
+                key={`${item.taskName}-${index}`}
+                taskId={item.taskId} 
+                taskName={item.taskName}
+                />
+            ))}
+          </div>
         </div>
         <div className="flex-1/2 bg-gray-700 p-4 text-center">
           <p className="text-lg font-semibold mb-4">Finished Tasks</p>
-          <div className="flex flex-col gap-4"></div>
+          <div className="flex flex-col gap-4">
+            {tasks.filter(item => item.status == "done").map((item, index) => (
+              <FinishedCard
+                key={`${item.taskName}-${index}`}
+                taskId={item.taskId} 
+                taskName={item.taskName}
+                />
+            ))}
+          </div>
         </div>
       </div>
 
