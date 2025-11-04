@@ -2,11 +2,8 @@
 
 export default function App() {
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-neutral-900 text-white">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold">Next.js + Tailwind</h1>
-        <h1 className="text-2xl italic">To Do List App</h1>
-      </div>
+    <div className="bg-amber-400 text-white p-4">
+      
     </div>
   )
 }
