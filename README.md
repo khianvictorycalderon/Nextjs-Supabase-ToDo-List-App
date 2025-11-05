@@ -8,9 +8,9 @@ A simple CRUD app.
   ```sql
   CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
-  CREATE TABLE tasks(
-    taskId UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    taskName TEXT NOT NULL,
+  CREATE TABLE IF NOT EXISTS tasks(
+    task_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    task_name TEXT NOT NULL,
     status TEXT NOT NULL DEFAULT 'pending'
   );
   ```
