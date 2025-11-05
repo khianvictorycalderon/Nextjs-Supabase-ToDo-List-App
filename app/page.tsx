@@ -34,6 +34,7 @@ export default function App() {
       alert(`Unable to add task: ${err.message}`);
     } finally {
       setIsAddingTask(false);
+      fetchTasks();
     }
   }
 
