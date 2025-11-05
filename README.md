@@ -1,6 +1,9 @@
 # Next.js + Supabase To Do List App
 A simple CRUD app.
 
+## Preview:
+![ToDo List App Preview](images/preview.png)
+
 ## To run this project:
 1. Clone this repository `git clone https://github.com/khianvictorycalderon/Nextjs-Supabase-ToDo-List-App.git`
 2. Go to your supabase project.
