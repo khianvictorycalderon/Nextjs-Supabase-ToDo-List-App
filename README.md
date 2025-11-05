@@ -1,10 +1,27 @@
 # Next.js + Supabase To Do List App
 A simple CRUD app.
 
-## To run this project (General Steps):
+## To run this project:
 1. Clone this repository `git clone https://github.com/khianvictorycalderon/Nextjs-Supabase-ToDo-List-App.git`
-2. Run `npm install`
-3. Run `npm run dev`
+2. Go to your supabase project.
+3. Run this SQL query in your supabase `sql editor` project:
+  ```sql
+  CREATE TABLE tasks(
+    taskId UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    taskName TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending'
+  );
+  ```
+4. Create a `.env.local` file and paste the following:
+  ```env
+  NEXT_PUBLIC_SUPABASE_URL=""
+  NEXT_PUBLIC_SUPABASE_ANON_KEY=""
+  ```
+5. Replace the empty string with your actual supabase url and anon key.
+6. Run `npm install`
+7. Run `npm run dev`
+
+---
 
 ## Dependencies & Configuration
 The following is a list of installed dependencies and configuration settings used in this project.
@@ -14,9 +31,3 @@ This section is provided for reference only, to give you insight into how the pr
 ## Dependencies
 - `npm install axios`
 - `npm install @supabase/supabase-js`
-
-## Configuration Dependencies
-- Update `package.json`:
-  ```bash
-  <updated-configuration>
-  ```
