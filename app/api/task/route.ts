@@ -1,3 +1,4 @@
+import { supabase } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 
 // Getting all the tasks from database
@@ -31,14 +32,40 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-    const body = await req.json();
+    // Task name
+    const { taskInputName } = await req.json();
 
-    // New task
-    const newTaskName = body.taskInputName;
-    console.log(`Task "${newTaskName}" created successfully!`);
+    // Validate input
+    if (!taskInputName?.trim()) {
+        return NextResponse.json(
+            { message: "Task name cannot be empty!" }, 
+            { status: 400 }
+        );
+    }
 
-    return NextResponse.json({
-        message: "Successfully created new task!"
-    }, { status: 200 });
+    // Inserting into the actual database
+    const { error } = await supabase
+        .from("tasks")
+        .insert([
+            {
+                task_name: taskInputName
+            }
+        ])
+        .select();
+
+    // Returns error message if there is any
+    if (error) {
+        console.log(`Unable to insert data: ${error.message}`);
+        return NextResponse.json(
+            { message: error.message },
+            { status: 500 }
+        );
+    }
+
+    // If everything goes well
+    return NextResponse.json(
+        { message: `New task ${taskInputName} successfully created!` },
+        { status: 200 }
+    );
 
 }
