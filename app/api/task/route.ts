@@ -8,6 +8,9 @@ export async function GET() {
     const { data, error } = await supabase
         .from("tasks")
         .select("*")
+        .order("task_name", {
+            ascending: true
+        }) // Arranges alphabetically
 
     // If there are errors
     if (error) {
