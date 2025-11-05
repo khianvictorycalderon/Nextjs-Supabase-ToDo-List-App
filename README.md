@@ -2,7 +2,7 @@
 A simple CRUD app.
 
 ## To run this project (General Steps):
-1. Clone this repository `git clone https://github.com/<user-name>/<repo-name>.git`
+1. Clone this repository `git clone https://github.com/khianvictorycalderon/Nextjs-Supabase-ToDo-List-App.git`
 2. Run `npm install`
 3. Run `npm run dev`
 
