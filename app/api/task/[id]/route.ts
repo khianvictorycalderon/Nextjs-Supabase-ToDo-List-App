@@ -1,3 +1,4 @@
+import { supabase } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 
 // For marking if the task is done or pending
@@ -6,14 +7,39 @@ export async function PATCH(
     req: NextRequest, 
     {params}: {params: Promise<{id: string}>} 
 ) {
+    // Getting the ID and status type of what we want to mark  
     const { id: taskId } = await params;
-    const changeType = await req.json();
-    
-    console.log(`Task with ID ${taskId} successfully marked as ${changeType.status}`)
+    const { status: changeType } = await req.json();
 
-    return NextResponse.json({
-        message: "Successfully mocked updated!"
-    }, { status: 200 });
+    // Verify only 2 types of status
+    if (!(changeType == "pending" || changeType == "completed")) {
+        return NextResponse.json(
+            { message: "Invalid request type!" },
+            { status: 400 }
+        );
+    }
+
+    // We update in the database
+    const { data, error } = await supabase
+        .from("tasks")
+        .update({ status: changeType })
+        .eq("task_id", String(taskId))
+        .select();
+
+    // State if there is an error
+    if (error) {
+        console.log(`Unable to update task: ${error.message}`);
+        return NextResponse.json(
+            { message: `Unable to update task: ${error.message}`},
+            { status: 500 }
+        );
+    }
+
+    // If everything goes well
+    return NextResponse.json(
+        { message: `Task with ID ${taskId} successfully marked as ${changeType}!`},
+        { status: 200 }
+    );
 }
 
 // For deleting a task
