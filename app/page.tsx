@@ -16,15 +16,9 @@ export default function App() {
     setTasks(res.data.tasks);
   }
 
-  const fetchTest = async () => {
-    const res = await axios.get("/api/test/server");
-    alert(res.data.message);
-  }
-
   // Fething from back-end
   useEffect(() => {
     fetchTasks();
-    fetchTest();
   },[]);
 
   const handleAddTask = async (e: React.FormEvent<HTMLFormElement>) => {
