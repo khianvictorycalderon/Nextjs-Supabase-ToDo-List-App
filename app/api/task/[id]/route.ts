@@ -47,10 +47,27 @@ export async function DELETE(
     _req: NextRequest, 
     {params}: {params: Promise<{id: string}>} 
 ) {
+    // Get the ID of the task we want to delete
     const { id: taskId } = await params;
-    console.log(`Task with ID ${taskId} successfully deleted!`);
 
-    return NextResponse.json({
-        message: "Successfully mocked deleted!"
-    }, { status: 200 });
+    // Now we delete
+    const { error } = await supabase
+        .from("tasks")
+        .delete()
+        .eq("task_id", taskId);
+
+    // State if there is an error
+    if (error) {
+        console.log(`Unable to delete task: ${error.message}`);
+        return NextResponse.json(
+            { message: `Unable to delete task: ${error.message}` },
+            { status: 500 }
+        );
+    }
+
+    // If all goes well
+    return NextResponse.json(
+        { message: "Successfully deleted a task!" },
+        { status: 200 }
+    )
 }
