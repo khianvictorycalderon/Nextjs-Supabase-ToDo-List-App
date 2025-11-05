@@ -4,31 +4,34 @@ import { NextRequest, NextResponse } from "next/server";
 // Getting all the tasks from database
 export async function GET() {
 
-    // Pretend that this is fetched from database
-    const tasks: TasksProps[] = [
-        {
-            taskId: "1001",
-            taskName: "Wash Clothes",
-            status: "pending"
-        },
-        {
-            taskId: "1002",
-            taskName: "Sleep",
-            status: "pending"
-        },
-        {
-            taskId: "1003",
-            taskName: "Feed the Dog",
-            status: "completed"
-        },
-    ]
+    // Fetch from database
+    const { data, error } = await supabase
+        .from("tasks")
+        .select("*")
 
-    return NextResponse.json({
-        message: "Successfully retrieved!",
-        tasks: tasks
-    }, {
-        status: 200
-    })
+    // If there are errors
+    if (error) {
+        return NextResponse.json(
+            { message: `Unable to fetch tasks: ${error.message}` },
+            { status: 500 }
+        );
+    }
+
+    // Map each values
+    let tasks: TasksProps[] = data.map(item => ({
+        taskId: item.task_id,
+        taskName: item.task_name,
+        status: item.status
+    }))
+
+    return NextResponse.json(
+        {
+            message: "Successfully retrieved!", tasks
+        }, 
+        {
+            status: 200
+        }
+    );
 }
 
 export async function POST(req: NextRequest) {
