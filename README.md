@@ -14,7 +14,6 @@ This section is provided for reference only, to give you insight into how the pr
 ## Dependencies
 - `npm install axios`
 - `npm install @supabase/supabase-js`
-- `npm install @supabase/ssr`
 
 ## Configuration Dependencies
 - Update `package.json`:
