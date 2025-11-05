@@ -6,6 +6,8 @@ A simple CRUD app.
 2. Go to your supabase project.
 3. Run this SQL query in your supabase `sql editor` project:
   ```sql
+  CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
   CREATE TABLE tasks(
     taskId UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     taskName TEXT NOT NULL,
@@ -14,8 +16,8 @@ A simple CRUD app.
   ```
 4. Create a `.env.local` file and paste the following:
   ```env
-  NEXT_PUBLIC_SUPABASE_URL=""
-  NEXT_PUBLIC_SUPABASE_ANON_KEY=""
+  SUPABASE_URL=""
+  SUPABASE_ANON_KEY=""
   ```
 5. Replace the empty string with your actual supabase url and anon key.
 6. Run `npm install`
