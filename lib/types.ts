@@ -1,8 +1,8 @@
-interface TasksProps extends Omit<CardProps, "onActionComplete"> {
+export interface TasksProps extends Omit<CardProps, "onActionComplete"> {
     status: "pending" | "completed";
 }
 
-interface CardProps {
+export interface CardProps {
     taskId: string;
     taskName: string;
     onActionComplete: () => void;

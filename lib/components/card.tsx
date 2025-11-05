@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
+import { CardProps } from "../types";
 
 const handleUpdateStatus = async (
     taskId: string, status: "completed" | "pending", 
@@ -13,8 +14,12 @@ const handleUpdateStatus = async (
         await axios.patch(`/api/task/${taskId}`, { status });
         console.log(`Task with ID ${taskId}, successfully marked as ${status}!`);
         onActionComplete();
-    } catch (err: any) {
-        alert(`Unable to marked task with ID ${taskId} to ${status}: ${err.message}`);
+    } catch (err: unknown) {
+        if (err instanceof Error) {
+            alert(`Unable to marked task with ID ${taskId} to ${status}: ${err?.message}`);
+        } else {
+            alert(`Unable to marked task with ID ${taskId} to ${status}: ${String(err)}`);
+        }
     } finally {
         setIsLoading(false);
     }
@@ -30,8 +35,12 @@ const handleDeleteTask = async (
         await axios.delete(`/api/task/${taskId}`);
         console.log(`Task with ID ${taskId}, successfully deleted!`);
         onActionComplete();
-    } catch (err: any) {
-        alert(`Unable to delete task with ID ${taskId}: ${err.message}`);
+    } catch (err: unknown) {
+        if (err instanceof Error) {
+            alert(`Unable to delete task with ID ${taskId}: ${err.message}`);
+        } else {
+            alert(`Unable to delete task with ID ${taskId}: ${String(err)}`);
+        }
     } finally {
         setIsLoading(false);
     }

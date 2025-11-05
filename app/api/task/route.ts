@@ -1,3 +1,4 @@
+import { TasksProps } from "@/lib/types";
 import { supabase } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -21,7 +22,7 @@ export async function GET() {
     }
 
     // Map each values
-    let tasks: TasksProps[] = data.map(item => ({
+    const tasks: TasksProps[] = data.map(item => ({
         taskId: item.task_id,
         taskName: item.task_name,
         status: item.status

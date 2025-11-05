@@ -1,6 +1,7 @@
 'use client';
 
 import { CompletedCard, PendingCard } from "@/lib/components/card";
+import { TasksProps } from "@/lib/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -30,8 +31,12 @@ export default function App() {
       if (res.status == 200) {
         setTaskInputName(""); // Clears the input
       }
-    } catch (err: any) {
-      alert(`Unable to add task: ${err.message}`);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        alert(`Unable to add task: ${err.message}`);
+      } else {
+        alert(`Unable to add task: ${String(err)}`);
+      }
     } finally {
       setIsAddingTask(false);
       fetchTasks();

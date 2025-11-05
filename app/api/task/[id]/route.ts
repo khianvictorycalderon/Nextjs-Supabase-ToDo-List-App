@@ -20,7 +20,7 @@ export async function PATCH(
     }
 
     // We update in the database
-    const { data, error } = await supabase
+    const { error } = await supabase
         .from("tasks")
         .update({ status: changeType })
         .eq("task_id", String(taskId))
